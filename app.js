@@ -1,10 +1,10 @@
 const express = require("express");
 const connectDb = require("./config/db");
 const app = express();
+connectDb();
 
 /// Init Middleware
 app.use(express.json({ extended: false }));
-connectDb();
 
 app.get("/", (req, res) => {
   res.send("Api is running now.");
