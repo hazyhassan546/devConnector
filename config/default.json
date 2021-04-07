@@ -1,4 +1,6 @@
 {
   "mongoURI": "mongodb://hassan123:hassan123@cluster0-shard-00-00.jlurb.mongodb.net:27017,cluster0-shard-00-01.jlurb.mongodb.net:27017,cluster0-shard-00-02.jlurb.mongodb.net:27017/myFirstDatabase?ssl=true&replicaSet=atlas-sqqq33-shard-0&authSource=admin&retryWrites=true&w=majority",
-  "jwtSecret": "myJwtSectrets"
+  "jwtSecret": "myJwtSectrets",
+  "githubClientId": "51292e987eb06a9e6899",
+  "githubClientSecret": "71ddf84275e51b98db388ce46e9f188d54692d23"
 }
