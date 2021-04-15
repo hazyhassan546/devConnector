@@ -7,7 +7,7 @@ export const ApiPost = async (url, body) => {
     },
   };
 
-  const res = {};
+  let res = {};
   await axios
     .post(url, JSON.stringify(body), config)
     .then(function (response) {

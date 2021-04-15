@@ -1,11 +1,6 @@
 import React, { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
-import { connect } from "react-redux";
-import axios from "axios";
-import { set_alert, remove_alert } from "../../action/alert";
-import { AlertHelper } from "../../helpers/alertHelper";
-import { registerUser } from "../../action/auth";
-
+import { AlertHelper } from "../../../helpers/alertHelper";
 const Register = (props) => {
   const [formData, setFormData] = useState({
     name: "",
@@ -26,8 +21,7 @@ const Register = (props) => {
   const submitForm = async (e) => {
     e.preventDefault();
     if (password !== password2) {
-      // this function will add and remove alerts as per requirements
-      AlertHelper("Password do not matched", "danger", 2000, props);
+      AlertHelper({ msg: "Password do not Matched", alertType: "danger" });
     } else {
       const User = {
         name,
@@ -101,12 +95,5 @@ const Register = (props) => {
     </Fragment>
   );
 };
-const mapDispatchToProps = (dispatch) => {
-  return {
-    // dispatching actions returned by action creators
-    set_alert: (params) => dispatch(set_alert(params)),
-    remove_alert: (params) => dispatch(remove_alert(params)),
-    registerUser: (params) => dispatch(registerUser(params)),
-  };
-};
-export default connect(null, mapDispatchToProps)(Register);
+
+export default Register;

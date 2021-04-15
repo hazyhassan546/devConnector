@@ -1,11 +1,16 @@
-export const AlertHelper = (msg, alertType,time, props) => {
+import { removeAlert, setAlert } from "../redux/action/alert";
+import store from "../redux/store";
+
+export const AlertHelper = ({ msg,alertType }) => {
   const id = Math.floor(Math.random() * 100000);
-  props?.set_alert({
-    id: id,
-    msg: msg,
-    alertType: alertType,
-  });
+  store.dispatch(
+    setAlert({
+      id: id,
+      msg: msg,
+      alertType: alertType,
+    })
+  );
   setTimeout(() => {
-    props?.remove_alert(id);
-  }, time);
+    store.dispatch(removeAlert(id));
+  }, 4000);
 };
