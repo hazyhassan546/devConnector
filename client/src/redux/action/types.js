@@ -15,3 +15,9 @@ export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_ERROR = "LOGIN_ERROR";
 
 export const LOGOUT = "LOGOUT";
+
+//// Profile Types
+
+export const GET_USER_PROFILE = "GET_USER_PROFILE";
+export const GET_USER_PROFILE_SUCCESS = "GET_USER_PROFILE_SUCCESS";
+export const GET_USER_PROFILE_ERROR = "GET_USER_PROFILE_ERROR";

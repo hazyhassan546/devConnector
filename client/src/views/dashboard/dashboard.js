@@ -1,17 +1,14 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, { useEffect } from "react";
+import PropTypes from "prop-types";
+import { globalConnect } from "../../redux/connect/globalConnect";
 
 function Dashboard(props) {
-    return (
-        <div>
-
-        </div>
-    )
+  useEffect(() => {
+    props.getUserProfile();
+  }, []);
+  return <div></div>;
 }
 
-Dashboard.propTypes = {
+Dashboard.propTypes = {};
 
-}
-
-export default Dashboard
-
+export default globalConnect()(Dashboard);
