@@ -31,7 +31,7 @@ router.post(
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({ msg: "Invalid Credentials" });
+      return res.status(400).json(({ errors: [{ msg: "Invalid Credentials" }] }));
     }
     /// if errors are empty then we have to register user
     const { email, password } = req.body;
@@ -40,13 +40,13 @@ router.post(
       /// first check if user exist
       let user = await User.findOne({ email });
       if (!user) {
-        return res.status(400).json({ msg: "Invalid Credentials" });
+        return res.status(400).json(({ errors: [{ msg: "Invalid Credentials" }] }));
       }
       // match password
 
       const isMatched = await bcrypt.compare(password, user.password);
       if (!isMatched) {
-        return res.status(400).json({ msg: "Invalid Credentials" });
+        return res.status(400).json(({ errors: [{ msg: "Invalid Credentials" }] }));
       }
 
       //// now get JWT (json web token)

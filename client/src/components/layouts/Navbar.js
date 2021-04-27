@@ -1,7 +1,8 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
+import { globalConnect } from "../../redux/connect/globalConnect";
 
-export const Navbar = () => {
+const Navbar = (props) => {
   return (
     <nav className="navbar bg-dark">
       <h1>
@@ -9,17 +10,34 @@ export const Navbar = () => {
           <i className="fas fa-code"></i> DevConnector
         </Link>
       </h1>
-      <ul>
-        <li>
-          <Link to="/">Developers</Link>
-        </li>
-        <li>
-          <Link to="/register">Register</Link>
-        </li>
-        <li>
-          <Link to="/Login">Login</Link>
-        </li>
-      </ul>
+      {!props.loading && (
+        <Fragment>
+          {props.auth.isAuthenticated ? (
+            <ul>
+              <li>
+                <a onClick={() => props.logout()}>
+                  <i className="fas fa-sign-out-alt"></i>
+                  <span className="hide-sm" >Logout</span>
+                </a>
+              </li>
+            </ul>
+          ) : (
+            <ul>
+              <li>
+                <Link to="/">Developers</Link>
+              </li>
+              <li>
+                <Link to="/register">Register</Link>
+              </li>
+              <li>
+                <Link to="/Login">Login</Link>
+              </li>
+            </ul>
+          )}
+        </Fragment>
+      )}
     </nav>
   );
 };
+
+export default globalConnect()(Navbar);

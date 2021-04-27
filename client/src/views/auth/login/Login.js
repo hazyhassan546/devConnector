@@ -1,11 +1,11 @@
 import React, { Fragment, useState } from "react";
-import { Link } from "react-router-dom";
-export const Login = () => {
+import { Link, Redirect } from "react-router-dom";
+import { globalConnect } from "../../../redux/connect/globalConnect";
+const Login = (props) => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
-
   const { email, password } = formData;
 
   const onChange = (e) => {
@@ -15,14 +15,23 @@ export const Login = () => {
     });
   };
 
+  const onSubmit = (e) => {
+    e.preventDefault();
+   props.loginUser(formData)
+    
+  };
+
+if(props?.auth?.isAuthenticated){
+ return <Redirect to="/dashboard"/>
+}
+
   return (
     <Fragment>
-      <div className="alert alert-danger">Invalid credentials</div>
       <h1 className="large text-primary">Sign In</h1>
       <p className="lead">
         <i className="fas fa-user"></i> Sign into Your Account
       </p>
-      <form className="form" action="dashboard.html">
+      <form className="form" onSubmit={(e) => onSubmit(e)}>
         <div className="form-group">
           <input
             type="email"
@@ -50,3 +59,4 @@ export const Login = () => {
     </Fragment>
   );
 };
+export default globalConnect()(Login);

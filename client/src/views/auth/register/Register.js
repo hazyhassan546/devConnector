@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { AlertHelper } from "../../../helpers/alertHelper";
 const Register = (props) => {
   const [formData, setFormData] = useState({
@@ -17,6 +17,7 @@ const Register = (props) => {
       [e.target.name]: e.target.value,
     });
   };
+
 
   const submitForm = async (e) => {
     e.preventDefault();
@@ -37,6 +38,12 @@ const Register = (props) => {
       }
     }
   };
+
+
+if(props?.auth?.isAuthenticated){
+  return <Redirect to="/dashboard"/>
+ }
+
   return (
     <Fragment>
       <h1 className="large text-primary">Sign Up</h1>
