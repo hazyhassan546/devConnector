@@ -33,7 +33,7 @@ export default function (state = initialState, action) {
         ...state,
         loading: false,
         isAuthenticated: true,
-        user: payload,
+        user: payload?.user,
       };
     }
     case REGISTER_USER_SUCCESS:

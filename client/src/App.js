@@ -1,6 +1,6 @@
 import "./App.css";
 import React, { Fragment, useEffect } from "react";
-import { Landing } from "./components/layouts/Landing";
+import Landing from "./components/layouts/Landing";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 /// redux
 import { Provider } from "react-redux";
@@ -13,7 +13,7 @@ import Login from "./views/auth/login/Login";
 import Navbar from "./components/layouts/Navbar";
 import Dashboard from "./views/dashboard/dashboard";
 import PrivateRoutes from "./helpers/navigationHelper";
-
+import createProfile from "./views/profile/createProfile";
 function App() {
   if (localStorage.token) {
     setAuthToken(localStorage.token);
@@ -34,6 +34,11 @@ function App() {
               <Route exact path="/Login" component={Login} />
               <Route exact path="/Register" component={Register} />
               <PrivateRoutes exact path="/Dashboard" component={Dashboard} />
+              <PrivateRoutes
+                exact
+                path="/create-profile"
+                component={createProfile}
+              />
             </Switch>
           </section>
         </Fragment>

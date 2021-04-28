@@ -1,7 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
+import { globalConnect } from "../../redux/connect/globalConnect";
 
-export const Landing = () => {
+const Landing = (props) => {
+  if (props?.auth?.isAuthenticated) {
+    return <Redirect to="/dashboard" />;
+  }
   return (
     <section className="landing">
       <div className="dark-overlay">
@@ -24,3 +28,4 @@ export const Landing = () => {
     </section>
   );
 };
+export default globalConnect()(Landing);

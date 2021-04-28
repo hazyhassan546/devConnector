@@ -15,9 +15,14 @@ const Navbar = (props) => {
           {props.auth.isAuthenticated ? (
             <ul>
               <li>
-                <a onClick={() => props.logout()}>
+                <a
+                  onClick={() => {
+                    props.logout();
+                    props.clearProfile();
+                  }}
+                >
                   <i className="fas fa-sign-out-alt"></i>
-                  <span className="hide-sm" >Logout</span>
+                  <span className="hide-sm">Logout</span>
                 </a>
               </li>
             </ul>
