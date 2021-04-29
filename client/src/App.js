@@ -14,6 +14,10 @@ import Navbar from "./components/layouts/Navbar";
 import Dashboard from "./views/dashboard/dashboard";
 import PrivateRoutes from "./helpers/navigationHelper";
 import createProfile from "./views/profile/createProfile";
+import EditProfile from "./views/profile/editProfile";
+import AddExperience from "./views/profile/addExperience";
+import AddEducation from "./views/profile/addEducation";
+
 function App() {
   if (localStorage.token) {
     setAuthToken(localStorage.token);
@@ -38,6 +42,21 @@ function App() {
                 exact
                 path="/create-profile"
                 component={createProfile}
+              />
+              <PrivateRoutes
+                exact
+                path="/edit-profile"
+                component={EditProfile}
+              />
+              <PrivateRoutes
+                exact
+                path="/add-experience"
+                component={AddExperience}
+              />
+              <PrivateRoutes
+                exact
+                path="/add-education"
+                component={AddEducation}
               />
             </Switch>
           </section>

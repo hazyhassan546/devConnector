@@ -120,7 +120,13 @@ router.post(
     if (skills) {
       profileFields.skills = skills.split(",").map((skill) => skill.trim()); // required
     }
-    profileFields.social = {};
+    profileFields.social = {
+      youtube: "",
+      twitter: "",
+      facebook: "",
+      instagram: "",
+      linkedin: "",
+    };
     if (youtube) profileFields.social.youtube = youtube;
     if (twitter) profileFields.social.twitter = twitter;
     if (facebook) profileFields.social.facebook = facebook;

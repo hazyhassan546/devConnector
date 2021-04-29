@@ -1,10 +1,12 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { globalConnect } from "../../redux/connect/globalConnect";
 import Spinner from "../../components/layouts/spinner";
 import { Link, useHistory } from "react-router-dom";
-function CreateProfile(props) {
+function EditProfile(props) {
   let history = useHistory();
+  let loading = props?.profile?.loading;
+  let profile = props?.profile?.profile;
   const [formData, setFormData] = useState({
     company: "",
     website: "",
@@ -28,10 +30,31 @@ function CreateProfile(props) {
       [e.target.name]: e.target.value,
     });
   };
+  useEffect(() => {
+    props.getUserProfile();
+  }, []);
+  useEffect(() => {
+    console.log(profile);
+    setFormData({
+      company: loading || !profile.company ? "" : profile.company,
+      website: loading || !profile.website ? "" : profile.website,
+      location: loading || !profile.location ? "" : profile.location,
+      status: loading || !profile.status ? "" : profile.status,
+      skills: loading || !profile.skills ? "" : profile.skills.join(","),
+      githubUserName:
+        loading || !profile.githubUserName ? "" : profile.githubUserName,
+      bio: loading || !profile.bio ? "" : profile.bio,
+      twitter: loading || !profile.social ? "" : profile?.social?.twitter,
+      facebook: loading || !profile.social ? "" : profile?.social?.facebook,
+      instagram: loading || !profile.social ? "" : profile?.social?.instagram,
+      linkedin: loading || !profile.social ? "" : profile?.social?.linkedin,
+      youtube: loading || !profile.social ? "" : profile?.social?.youtube,
+    });
+  }, [loading]);
 
   const submitForm = (e) => {
     e.preventDefault();
-    props.createOrUpdateProfile({ formData, history });
+    props.createOrUpdateProfile({ formData, history,edit:true }, );
   };
   const {
     company,
@@ -55,12 +78,12 @@ function CreateProfile(props) {
   ) : (
     <Fragment>
       <section class="container">
-        <h1 class="large text-primary">Create Your Profile</h1>
-        <p class="lead">
+        <h1 class="large text-primary">Edit Your Profile</h1>
+        {/* <p class="lead">
           <i class="fas fa-user"></i> Let's get some information to make your
           profile stand out
-        </p>
-        <small>* = required field</small>
+        </p> */}
+        {/* <small>* = required field</small> */}
         <form
           class="form"
           onSubmit={(e) => {
@@ -225,6 +248,6 @@ function CreateProfile(props) {
   );
 }
 
-CreateProfile.propTypes = {};
+EditProfile.propTypes = {};
 
-export default globalConnect()(CreateProfile);
+export default globalConnect()(EditProfile);

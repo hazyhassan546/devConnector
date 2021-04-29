@@ -1,6 +1,17 @@
 import { createAction } from "redux-actions";
-import { createOrUpdateApi, getUserProfileApi } from "../ApiCalls/profileApi";
 import {
+  createOrUpdateApi,
+  getUserProfileApi,
+  addExperienceApi,
+  addEducationApi
+} from "../ApiCalls/profileApi";
+import {
+  ADD_EDUCATION,
+  ADD_EDUCATION_ERROR,
+  ADD_EDUCATION_SUCCESS,
+  ADD_EXPERIENCE,
+  ADD_EXPERIENCE_ERROR,
+  ADD_EXPERIENCE_SUCCESS,
   CLEAR_PROFILE,
   CREATE_OR_UPDATE_USER_PROFILE,
   CREATE_OR_UPDATE_USER_PROFILE_ERROR,
@@ -30,4 +41,18 @@ export const profileActionCreator = {
     CREATE_OR_UPDATE_USER_PROFILE_SUCCESS
   ),
   createOrUpdateProfileError: createAction(CREATE_OR_UPDATE_USER_PROFILE_ERROR),
+
+  addExperience: createAction(ADD_EXPERIENCE, async (payload) => {
+    // this callback will be called when action is dis-patched.
+    await addExperienceApi(payload);
+  }),
+  addExperienceSuccess: createAction(ADD_EXPERIENCE_SUCCESS),
+  addExperienceProfileError: createAction(ADD_EXPERIENCE_ERROR),
+
+  addEducation: createAction(ADD_EDUCATION, async (payload) => {
+    // this callback will be called when action is dis-patched.
+    await addEducationApi(payload);
+  }),
+  addEducationSuccess: createAction(ADD_EDUCATION_SUCCESS),
+  addEducationError: createAction(ADD_EDUCATION_ERROR),
 };
