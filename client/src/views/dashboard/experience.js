@@ -16,7 +16,13 @@ function Experience(props) {
           )}
         </td>
         <td>
-          <button className="btn btn-danger">Delete</button>
+          <button 
+           onClick={() => {
+            props.deleteExperience({
+              exp_id: exp._id,
+            });
+          }}
+          className="btn btn-danger">Delete</button>
         </td>
       </tr>
     );

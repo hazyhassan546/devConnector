@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import PropTypes from "prop-types";
 import Moment from "react-moment";
 
@@ -17,7 +17,16 @@ function Education(props) {
           )}
         </td>
         <td>
-          <button className="btn btn-danger">Delete</button>
+          <button
+            className="btn btn-danger"
+            onClick={() => {
+              props.deleteEducation({
+                edu_id: edu._id,
+              });
+            }}
+          >
+            Delete
+          </button>
         </td>
       </tr>
     );

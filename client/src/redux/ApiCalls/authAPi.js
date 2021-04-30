@@ -1,7 +1,7 @@
 import axios from "axios";
 import { ENDPOINTS } from "../../common/routes";
 import { AlertHelper } from "../../helpers/alertHelper";
-import { ApiPost } from "../../helpers/apiHelper";
+import { ApiDelete, ApiPost } from "../../helpers/apiHelper";
 import setAuthToken from "../../helpers/setAuthToken";
 import { setAlert } from "../action/alert";
 import { authActionCreator } from "../action/auth";
@@ -58,5 +58,14 @@ export const loginApi = async (params) => {
     }
   } catch (error) {
     store.dispatch(authActionCreator.loginError());
+  }
+};
+
+export const deleteAccountApi = async () => {
+  try {
+    const res = await ApiDelete(ENDPOINTS.deleteProfile);
+    store.dispatch(authActionCreator.deleteAccountSuccess());
+  } catch (error) {
+    store.dispatch(authActionCreator.deleteAccountError());
   }
 };

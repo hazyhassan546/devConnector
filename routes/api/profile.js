@@ -4,6 +4,7 @@ const router = express.Router();
 const Profile = require("../../models/Profile");
 const { body, validationResult } = require("express-validator");
 const User = require("../../models/User");
+const Post = require("../../models/Post");
 const request = require("request");
 const config = require("config");
 
@@ -170,10 +171,12 @@ router.post(
 router.delete("/delete_profile", auth, async (req, res) => {
   try {
     /// 1: todo delete user posts
+    await Post.deleteMany({ user: req.user.id });
     /// 2: delete user profile
     await Profile.findOneAndRemove({ user: req.user.id });
+    /// 3: delete profile
     await User.findOneAndRemove({ _id: req.user.id });
-    res.send("User Deleted successfully");
+    res.send("User deleted successfully");
     /// 3: delete user
   } catch (error) {
     console.error(error);
@@ -243,7 +246,7 @@ router.put(
 // @desc    Delete Experience to profile
 // @access  Private
 
-router.delete(
+router.post(
   "/delete_experience_by_id",
   [auth, [body("exp_id", "exp_id is required").notEmpty()]],
   async (req, res) => {
@@ -336,7 +339,7 @@ router.put(
 // @desc    Delete Education to profile
 // @access  Private
 
-router.delete(
+router.post(
   "/delete_education_by_id",
   [auth, [body("edu_id", "edu_id is required").notEmpty()]],
   async (req, res) => {

@@ -27,8 +27,22 @@ function Dashboard(props) {
           </Link>
         </div>
       </p>
-      <Experience experience={props.profile.profile.experience} />
-      <Education education={props.profile.profile.education} />
+      {props?.profile?.profile?.experience?.length > 0 && (
+        <Experience experience={props.profile.profile.experience} {...props} />
+      )}
+      {props?.profile?.profile?.education?.length > 0 && (
+        <Education education={props.profile.profile.education} {...props} />
+      )}
+
+      <button
+        onClick={() => {
+          props.deleteAccount();
+        }}
+        className="btn btn-danger"
+      >
+        <i className="fas fa-user" />
+        Delete Your Account
+      </button>
     </Fragment>
   ) : (
     <Fragment>

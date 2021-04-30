@@ -11,6 +11,12 @@ import {
   ADD_EXPERIENCE_SUCCESS,
   ADD_EDUCATION,
   ADD_EDUCATION_SUCCESS,
+  DELETE_EDUCATION,
+  DELETE_EXPERIENCE,
+  DELETE_EDUCATION_SUCCESS,
+  DELETE_EXPERIENCE_ERROR,
+  DELETE_EXPERIENCE_SUCCESS,
+  DELETE_EDUCATION_ERROR,
 } from "../action/types";
 
 const initialState = {
@@ -26,6 +32,8 @@ export default function (state = initialState, action) {
     case CREATE_OR_UPDATE_USER_PROFILE:
     case ADD_EXPERIENCE:
     case ADD_EDUCATION:
+    case DELETE_EDUCATION:
+    case DELETE_EXPERIENCE:
     case GET_USER_PROFILE: {
       return {
         ...state,
@@ -35,6 +43,8 @@ export default function (state = initialState, action) {
     case CREATE_OR_UPDATE_USER_PROFILE_SUCCESS:
     case ADD_EXPERIENCE_SUCCESS:
     case ADD_EDUCATION_SUCCESS:
+    case DELETE_EDUCATION_SUCCESS:
+    case DELETE_EXPERIENCE_SUCCESS:
     case GET_USER_PROFILE_SUCCESS: {
       return {
         ...state,
@@ -45,6 +55,8 @@ export default function (state = initialState, action) {
     case CREATE_OR_UPDATE_USER_PROFILE_ERROR:
     case ADD_EXPERIENCE_ERROR:
     case ADD_EXPERIENCE_ERROR:
+    case DELETE_EXPERIENCE_ERROR:
+      case DELETE_EDUCATION_ERROR:
     case GET_USER_PROFILE_ERROR: {
       return {
         ...state,

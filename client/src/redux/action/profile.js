@@ -3,7 +3,9 @@ import {
   createOrUpdateApi,
   getUserProfileApi,
   addExperienceApi,
-  addEducationApi
+  addEducationApi,
+  deleteEducationAPi,
+  deleteExperienceApi,
 } from "../ApiCalls/profileApi";
 import {
   ADD_EDUCATION,
@@ -16,6 +18,12 @@ import {
   CREATE_OR_UPDATE_USER_PROFILE,
   CREATE_OR_UPDATE_USER_PROFILE_ERROR,
   CREATE_OR_UPDATE_USER_PROFILE_SUCCESS,
+  DELETE_EDUCATION,
+  DELETE_EDUCATION_ERROR,
+  DELETE_EDUCATION_SUCCESS,
+  DELETE_EXPERIENCE,
+  DELETE_EXPERIENCE_ERROR,
+  DELETE_EXPERIENCE_SUCCESS,
   GET_USER_PROFILE,
   GET_USER_PROFILE_ERROR,
   GET_USER_PROFILE_SUCCESS,
@@ -55,4 +63,18 @@ export const profileActionCreator = {
   }),
   addEducationSuccess: createAction(ADD_EDUCATION_SUCCESS),
   addEducationError: createAction(ADD_EDUCATION_ERROR),
+
+  deleteEducation: createAction(DELETE_EDUCATION, async (payload) => {
+    await deleteEducationAPi(payload);
+  }),
+  deleteEducationSuccess: createAction(DELETE_EDUCATION_SUCCESS),
+  deleteEducationError: createAction(DELETE_EDUCATION_ERROR),
+
+  deleteExperience: createAction(DELETE_EXPERIENCE, async (payload) => {
+    await deleteExperienceApi(payload);
+  }),
+  deleteExperienceSuccess: createAction(DELETE_EXPERIENCE_SUCCESS),
+  deleteExperienceError: createAction(DELETE_EXPERIENCE_ERROR),
+
+  
 };

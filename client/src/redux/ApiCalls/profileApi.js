@@ -83,3 +83,44 @@ export const addEducationApi = async (params) => {
     store.dispatch(profileActionCreator.addEducationError());
   }
 };
+
+export const deleteEducationAPi = async (params) => {
+  try {
+    const res = await ApiPost(ENDPOINTS.deleteEducation, params);
+    if (res.errors) {
+      res.errors.map((item) => {
+        AlertHelper({ msg: item.msg, alertType: "danger" });
+      });
+      store.dispatch(profileActionCreator.deleteEducationError());
+    } else {
+      store.dispatch(profileActionCreator.deleteEducationSuccess(res.data));
+      AlertHelper({
+        msg: "Education deleted successfully",
+        alertType: "success",
+      });
+    }
+  } catch (error) {
+    store.dispatch(profileActionCreator.deleteEducationError());
+  }
+};
+
+export const deleteExperienceApi = async (params) => {
+  try {
+    const res = await ApiPost(ENDPOINTS.deleteExperience, params);
+    if (res.errors) {
+      res.errors.map((item) => {
+        AlertHelper({ msg: item.msg, alertType: "danger" });
+      });
+      store.dispatch(profileActionCreator.deleteExperienceError());
+    } else {
+      store.dispatch(profileActionCreator.deleteExperienceSuccess(res.data));
+      AlertHelper({
+        msg: "Experience deleted successfully",
+        alertType: "success",
+      });
+    }
+  } catch (error) {
+    store.dispatch(profileActionCreator.deleteExperienceError());
+  }
+};
+

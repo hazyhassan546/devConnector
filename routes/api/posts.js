@@ -238,14 +238,12 @@ router.post(
       const removeIndex = await post.comments
         .map((comment) => comment._id)
         .indexOf(req.body.commentId);
-
-      if (removeIndex!==-1) {
+      if (removeIndex !== -1) {
         post.comments.splice(removeIndex, 1);
         await post.save();
         res.json(post);
-      }
-      else{
-        return res.status(400).json({ msg: "Comment not found" }); 
+      } else {
+        return res.status(400).json({ msg: "Comment not found" });
       }
     } catch (error) {
       console.error(error);

@@ -1,5 +1,8 @@
 import {
   AUTH_ERROR,
+  DELETE_ACCOUNT,
+  DELETE_ACCOUNT_ERROR,
+  DELETE_ACCOUNT_SUCCESS,
   LOAD_USER,
   LOGIN_ERROR,
   LOGIN_SUCCESS,
@@ -22,6 +25,7 @@ export default function (state = initialState, action) {
   switch (type) {
     case LOAD_USER:
     case LOGIN_USER:
+    case DELETE_ACCOUNT:
     case REGISTER_USER: {
       return {
         ...state,
@@ -49,11 +53,18 @@ export default function (state = initialState, action) {
     case AUTH_ERROR:
     case LOGIN_ERROR:
     case LOGOUT:
+    case DELETE_ACCOUNT_SUCCESS:
     case REGISTER_USER_FAILED: {
       localStorage.setItem("token", null);
       return {
         ...state,
         isAuthenticated: false,
+        loading: false,
+      };
+    }
+    case DELETE_ACCOUNT_ERROR: {
+      return {
+        ...state,
         loading: false,
       };
     }
