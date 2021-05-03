@@ -17,6 +17,12 @@ import {
   DELETE_EXPERIENCE_ERROR,
   DELETE_EXPERIENCE_SUCCESS,
   DELETE_EDUCATION_ERROR,
+  GET_ALL_USER_PROFILE,
+  GET_ALL_USER_PROFILE_ERROR,
+  GET_ALL_USER_PROFILE_SUCCESS,
+  GET_GITHUB_REPO,
+  GET_GITHUB_REPO_SUCCESS,
+  GET_GITHUB_REPO_ERROR,
 } from "../action/types";
 
 const initialState = {
@@ -33,7 +39,9 @@ export default function (state = initialState, action) {
     case ADD_EXPERIENCE:
     case ADD_EDUCATION:
     case DELETE_EDUCATION:
+    case GET_ALL_USER_PROFILE:
     case DELETE_EXPERIENCE:
+    case GET_GITHUB_REPO:
     case GET_USER_PROFILE: {
       return {
         ...state,
@@ -52,11 +60,27 @@ export default function (state = initialState, action) {
         profile: payload,
       };
     }
+    case GET_ALL_USER_PROFILE_SUCCESS: {
+      return {
+        ...state,
+        profiles: payload,
+        loading: false,
+      };
+    }
+    case GET_GITHUB_REPO_SUCCESS: {
+      return {
+        ...state,
+        repos: payload,
+        loading: false,
+      };
+    }
     case CREATE_OR_UPDATE_USER_PROFILE_ERROR:
+    case GET_ALL_USER_PROFILE_ERROR:
     case ADD_EXPERIENCE_ERROR:
     case ADD_EXPERIENCE_ERROR:
+    case GET_GITHUB_REPO_ERROR:
     case DELETE_EXPERIENCE_ERROR:
-      case DELETE_EDUCATION_ERROR:
+    case DELETE_EDUCATION_ERROR:
     case GET_USER_PROFILE_ERROR: {
       return {
         ...state,

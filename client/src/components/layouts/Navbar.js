@@ -15,6 +15,9 @@ const Navbar = (props) => {
           {props.auth.isAuthenticated ? (
             <ul>
               <li>
+                <Link to="/Profiles">Developers</Link>
+              </li>
+              <li>
                 <a
                   onClick={() => {
                     props.logout();
@@ -29,7 +32,7 @@ const Navbar = (props) => {
           ) : (
             <ul>
               <li>
-                <Link to="/">Developers</Link>
+                <Link to="/Profiles">Developers</Link>
               </li>
               <li>
                 <Link to="/register">Register</Link>

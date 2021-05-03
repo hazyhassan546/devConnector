@@ -6,6 +6,8 @@ import {
   addEducationApi,
   deleteEducationAPi,
   deleteExperienceApi,
+  getAllProfilesApi,
+  getGithubRepoApi,
 } from "../ApiCalls/profileApi";
 import {
   ADD_EDUCATION,
@@ -24,9 +26,18 @@ import {
   DELETE_EXPERIENCE,
   DELETE_EXPERIENCE_ERROR,
   DELETE_EXPERIENCE_SUCCESS,
+  GET_ALL_USER_PROFILE,
+  GET_ALL_USER_PROFILE_ERROR,
+  GET_ALL_USER_PROFILE_SUCCESS,
   GET_USER_PROFILE,
   GET_USER_PROFILE_ERROR,
   GET_USER_PROFILE_SUCCESS,
+  GET_USER_PROFILE_BY_ID,
+  GET_USER_PROFILE_BY_ID_SUCCESS,
+  GET_USER_PROFILE_BY_ID_ERROR,
+  GET_GITHUB_REPO,
+  GET_GITHUB_REPO_SUCCESS,
+  GET_GITHUB_REPO_ERROR,
 } from "./types";
 
 export const profileActionCreator = {
@@ -76,5 +87,21 @@ export const profileActionCreator = {
   deleteExperienceSuccess: createAction(DELETE_EXPERIENCE_SUCCESS),
   deleteExperienceError: createAction(DELETE_EXPERIENCE_ERROR),
 
-  
+  getAllUserProfiles: createAction(GET_ALL_USER_PROFILE, async () => {
+    await getAllProfilesApi();
+  }),
+  getAllUserProfilesSuccess: createAction(GET_ALL_USER_PROFILE_SUCCESS),
+  getAllUserProfileError: createAction(GET_ALL_USER_PROFILE_ERROR),
+
+  getUserProfileById: createAction(GET_USER_PROFILE_BY_ID, async () => {
+    // await getUserProfileApi();
+  }),
+  getUserProfileByIdSuccess: createAction(GET_USER_PROFILE_BY_ID_SUCCESS),
+  getUserProfileByIdError: createAction(GET_USER_PROFILE_BY_ID_ERROR),
+
+  getGithubRepo: createAction(GET_GITHUB_REPO, async (payload) => {
+    await getGithubRepoApi(payload);
+  }),
+  getGithubRepoSuccess: createAction(GET_GITHUB_REPO_SUCCESS),
+  getGithubRepoError: createAction(GET_GITHUB_REPO_ERROR),
 };

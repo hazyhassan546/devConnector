@@ -8,4 +8,6 @@ export const ENDPOINTS = {
   deleteEducation: "/api/profile/delete_education_by_id",
   deleteExperience: "/api/profile/delete_experience_by_id",
   deleteProfile: "/api/profile/delete_profile",
+  getAllProfiles:"/api/profile",
+  getAllGithubRepo:"/api/profile/gihubrepositories"
 };

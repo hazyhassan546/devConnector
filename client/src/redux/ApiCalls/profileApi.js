@@ -124,3 +124,20 @@ export const deleteExperienceApi = async (params) => {
   }
 };
 
+export const getAllProfilesApi = async () => {
+  try {
+    const res = await ApiGet(ENDPOINTS.getAllProfiles);
+    store.dispatch(profileActionCreator.getAllUserProfilesSuccess(res.data));
+  } catch (error) {
+    store.dispatch(profileActionCreator.getAllUserProfileError());
+  }
+};
+
+export const getGithubRepoApi = async (params) => {
+  try {
+    const res = await ApiPost(ENDPOINTS.getAllGithubRepo, params);
+    store.dispatch(profileActionCreator.getGithubRepoSuccess(res.data));
+  } catch (error) {
+    store.dispatch(profileActionCreator.getGithubRepoError());
+  }
+};
