@@ -37,10 +37,10 @@ router.get("/", async (req, res) => {
 });
 
 // ------------------------------------- Get Profile by ID API ---------------------------
-// @route   Get api/profile/byID
+// @route   post api/profile/byID
 // @desc    Test route
 // @access  Public
-router.get(
+router.post(
   "/byID",
   [body("userId", "userId is required").notEmpty()],
   async (req, res) => {

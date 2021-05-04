@@ -18,6 +18,7 @@ import EditProfile from "./views/profile/editProfile";
 import AddExperience from "./views/profile/addExperience";
 import AddEducation from "./views/profile/addEducation";
 import profiles from "./views/profile/profiles";
+import profileScreen from "./views/profile/profileScreen";
 
 function App() {
   if (localStorage.token) {
@@ -38,6 +39,7 @@ function App() {
             <Switch>
               <Route exact path="/Login" component={Login} />
               <Route exact path="/Register" component={Register} />
+              <Route exact path="/profile/:id" component={profileScreen} />
               <Route exact path="/Profiles" component={profiles} />
               <PrivateRoutes exact path="/Dashboard" component={Dashboard} />
               <PrivateRoutes

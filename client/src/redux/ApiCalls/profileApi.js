@@ -141,3 +141,12 @@ export const getGithubRepoApi = async (params) => {
     store.dispatch(profileActionCreator.getGithubRepoError());
   }
 };
+
+export const getUserProfileByIDApi = async (params) => {
+  try {
+    const res = await ApiPost(ENDPOINTS.profileById, params);
+    store.dispatch(profileActionCreator.getUserProfileByIdSuccess(res.data));
+  } catch (error) {
+    store.dispatch(profileActionCreator.getUserProfileByIdError());
+  }
+};

@@ -8,6 +8,7 @@ import {
   deleteExperienceApi,
   getAllProfilesApi,
   getGithubRepoApi,
+  getUserProfileByIDApi,
 } from "../ApiCalls/profileApi";
 import {
   ADD_EDUCATION,
@@ -93,8 +94,8 @@ export const profileActionCreator = {
   getAllUserProfilesSuccess: createAction(GET_ALL_USER_PROFILE_SUCCESS),
   getAllUserProfileError: createAction(GET_ALL_USER_PROFILE_ERROR),
 
-  getUserProfileById: createAction(GET_USER_PROFILE_BY_ID, async () => {
-    // await getUserProfileApi();
+  getUserProfileById: createAction(GET_USER_PROFILE_BY_ID, async (payload) => {
+    await getUserProfileByIDApi(payload);
   }),
   getUserProfileByIdSuccess: createAction(GET_USER_PROFILE_BY_ID_SUCCESS),
   getUserProfileByIdError: createAction(GET_USER_PROFILE_BY_ID_ERROR),
