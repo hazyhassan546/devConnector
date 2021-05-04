@@ -136,7 +136,17 @@ export const getAllProfilesApi = async () => {
 export const getGithubRepoApi = async (params) => {
   try {
     const res = await ApiPost(ENDPOINTS.getAllGithubRepo, params);
-    store.dispatch(profileActionCreator.getGithubRepoSuccess(res.data));
+    if (res.errors) {
+      // res.errors.map((item) => {
+      //   AlertHelper({
+      //     msg: item.msg,
+      //     alertType: "danger",
+      //   });
+      // });
+      store.dispatch(profileActionCreator.getGithubRepoError());
+    } else {
+      store.dispatch(profileActionCreator.getGithubRepoSuccess(res.data));
+    }
   } catch (error) {
     store.dispatch(profileActionCreator.getGithubRepoError());
   }

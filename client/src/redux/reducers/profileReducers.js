@@ -44,7 +44,7 @@ export default function (state = initialState, action) {
     case DELETE_EDUCATION:
     case GET_ALL_USER_PROFILE:
     case DELETE_EXPERIENCE:
-    case GET_GITHUB_REPO:
+    // case GET_GITHUB_REPO:
     case GET_USER_PROFILE_BY_ID:
     case GET_USER_PROFILE: {
       return {
@@ -83,7 +83,6 @@ export default function (state = initialState, action) {
     case GET_ALL_USER_PROFILE_ERROR:
     case ADD_EXPERIENCE_ERROR:
     case ADD_EXPERIENCE_ERROR:
-    case GET_GITHUB_REPO_ERROR:
     case GET_USER_PROFILE_BY_ID_ERROR:
     case DELETE_EXPERIENCE_ERROR:
     case DELETE_EDUCATION_ERROR:
@@ -93,6 +92,14 @@ export default function (state = initialState, action) {
         loading: false,
       };
     }
+    case GET_GITHUB_REPO_ERROR: {
+      return {
+        ...state,
+        loading: false,
+        repos: [],
+      };
+    }
+
     case CLEAR_PROFILE: {
       return {
         ...state,

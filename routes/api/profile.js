@@ -376,7 +376,7 @@ router.post(
 router.post(
   "/gihubrepositories",
   [body("github_usr_name", "please add github_user_name").notEmpty()],
-  (req, res) => {
+  async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
@@ -393,13 +393,16 @@ router.post(
         headers: { "user-agent": "Node.js" },
       };
 
-      request(options, (error, response, body) => {
+      await request(options, (error, response, body) => {
+        
         if (error) {
           return console.error(error);
         }
 
         if (response.statusCode !== 200) {
-          return res.status(404).json({ msg: "github profile not found" });
+          return res
+            .status(404)
+            .json({ errors: [{ msg: "github profile not found" }] });
         }
 
         res.json(JSON.parse(body));

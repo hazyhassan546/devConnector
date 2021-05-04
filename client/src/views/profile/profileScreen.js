@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import Spinner from "../../components/layouts/spinner";
 import { globalConnect } from "../../redux/connect/globalConnect";
 import About from "./profileComponents/about";
+import Education from "./profileComponents/education";
+import Experience from "./profileComponents/experience";
+import GithubRepo from "./profileComponents/githubRepos";
 import ProfileTop from "./profileComponents/profileTop";
 
 const ProfileScreen = (props) => {
@@ -29,6 +32,9 @@ const ProfileScreen = (props) => {
             <ProfileTop {...props} />
             <About {...props} />
           </div>
+          <Experience {...props} />
+          <Education {...props} />
+          {props?.profile?.profile?.githubUserName && <GithubRepo {...props} />}
         </Fragment>
       )}
     </Fragment>
