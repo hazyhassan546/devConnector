@@ -15,6 +15,9 @@ const Navbar = (props) => {
           {props.auth.isAuthenticated ? (
             <ul>
               <li>
+                <Link to="/posts">Posts</Link>
+              </li>
+              <li>
                 <Link to="/Profiles">Developers</Link>
               </li>
               <li>

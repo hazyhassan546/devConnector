@@ -19,6 +19,8 @@ import AddExperience from "./views/profile/addExperience";
 import AddEducation from "./views/profile/addEducation";
 import profiles from "./views/profile/profiles";
 import profileScreen from "./views/profile/profileScreen";
+import AllPosts from "./views/post/allPosts";
+import postDetails from "./views/post/postDetails";
 
 function App() {
   if (localStorage.token) {
@@ -40,8 +42,10 @@ function App() {
               <Route exact path="/Login" component={Login} />
               <Route exact path="/Register" component={Register} />
               <Route exact path="/profile/:id" component={profileScreen} />
+              <Route exact path="/postDetail" component={postDetails} />
               <Route exact path="/Profiles" component={profiles} />
               <PrivateRoutes exact path="/Dashboard" component={Dashboard} />
+              <PrivateRoutes exact path="/Posts" component={AllPosts} />
               <PrivateRoutes
                 exact
                 path="/create-profile"

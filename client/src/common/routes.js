@@ -1,6 +1,7 @@
 export const ENDPOINTS = {
   register: "/api/users",
   login: "/api/auth/login",
+  /////
   profile: "/api/profile/me",
   profileById: "/api/profile/byID",
   createUpdateProfile: "/api/profile/create_or_update_Profile",
@@ -9,6 +10,15 @@ export const ENDPOINTS = {
   deleteEducation: "/api/profile/delete_education_by_id",
   deleteExperience: "/api/profile/delete_experience_by_id",
   deleteProfile: "/api/profile/delete_profile",
-  getAllProfiles:"/api/profile",
-  getAllGithubRepo:"/api/profile/gihubrepositories"
+  getAllProfiles: "/api/profile",
+  getAllGithubRepo: "/api/profile/gihubrepositories",
+  ////
+  getAllPost: "/api/post/getAllPosts",
+  createPost: "/api/post/add_post",
+  deletePost: "/api/post/deletePost",
+  likePost: "api/post/like",
+  unlikePost: "api/post/unlike",
+  addPostComment: "/api/post/addComment",
+  deletePostComment: "/api/post/deleteComment",
+  
 };

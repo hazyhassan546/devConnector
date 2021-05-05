@@ -53,10 +53,10 @@ router.post(
 );
 
 // ------------------------------------- DELETE POST API ---------------------------
-// @route   DELETE api/deletePost
+// @route   POST api/deletePost
 // @desc    Add post to its timeline
 // @access  Private
-router.delete(
+router.post(
   "/deletePost",
   [auth, [body("postId", "Post text is required").notEmpty()]],
   async (req, res) => {
@@ -116,7 +116,7 @@ router.post(
         };
         post.likes.unshift(Reaction);
         await post.save();
-        res.json(Reaction);
+        res.json(post.likes);
       }
     } catch (error) {
       console.error(error);
@@ -158,7 +158,7 @@ router.post(
           .indexOf(req.user.id);
         post.likes.splice(indexRemove, 1);
         await post.save();
-        res.json(post);
+        res.json(post.likes);
       }
     } catch (error) {
       console.error(error);
@@ -173,7 +173,7 @@ router.post(
 // ------------------------ comment section ---------------------------
 
 // ------------------------------------- ADD Comment To POST API ---------------------------
-// @route   POST api/post/like
+// @route   POST api/post//addComment
 // @desc    Add Comment to a post
 // @access  Private
 router.post(
