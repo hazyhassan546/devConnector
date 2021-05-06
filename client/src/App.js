@@ -42,10 +42,15 @@ function App() {
               <Route exact path="/Login" component={Login} />
               <Route exact path="/Register" component={Register} />
               <Route exact path="/profile/:id" component={profileScreen} />
-              <Route exact path="/postDetail" component={postDetails} />
+
               <Route exact path="/Profiles" component={profiles} />
               <PrivateRoutes exact path="/Dashboard" component={Dashboard} />
               <PrivateRoutes exact path="/Posts" component={AllPosts} />
+              <PrivateRoutes
+                exact
+                path="/postDetail/:id"
+                component={postDetails}
+              />
               <PrivateRoutes
                 exact
                 path="/create-profile"

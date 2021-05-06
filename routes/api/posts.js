@@ -18,6 +18,33 @@ router.get("/getAllPosts", auth, async (req, res) => {
   }
 });
 
+// ------------------------------------- SINGLE POST API ---------------------------
+// @route   POST api/post/postById
+// @desc    Add post to its timeline
+// @access  Private
+router.post(
+  "/postById",
+  [auth, [body("postId", "Post text is required").notEmpty()]],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+    try {
+      /// get user and post
+      const post = await Post.findById(req.body.postId);
+      if (!post) {
+        return res.status(400).json({ msg: "Post not found" });
+      } else {
+        res.json(post);
+      }
+    } catch (error) {
+      console.error(error);
+      res.status(500).send("SERVER ERROR");
+    }
+  }
+);
+
 // ------------------------------------- ADD POST API ---------------------------
 // @route   POST api/add_post
 // @desc    Add post to its timeline

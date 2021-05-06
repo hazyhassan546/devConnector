@@ -88,7 +88,7 @@ const AllPostsScreen = (props) => {
                 >
                   <i class="fas fa-thumbs-down"></i>
                 </button>
-                <Link to="postDetail" class="btn btn-primary">
+                <Link to={`postDetail/${item._id}`} class="btn btn-primary">
                   Discussion
                   {item?.comments?.length > 0 && (
                     <span class="comment-count">{item?.comments?.length}</span>

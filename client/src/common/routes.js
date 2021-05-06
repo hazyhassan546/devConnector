@@ -14,11 +14,11 @@ export const ENDPOINTS = {
   getAllGithubRepo: "/api/profile/gihubrepositories",
   ////
   getAllPost: "/api/post/getAllPosts",
+  getPostById: "/api/post/postById",
   createPost: "/api/post/add_post",
   deletePost: "/api/post/deletePost",
   likePost: "api/post/like",
   unlikePost: "api/post/unlike",
   addPostComment: "/api/post/addComment",
   deletePostComment: "/api/post/deleteComment",
-  
 };

@@ -5,6 +5,9 @@ import {
   unlikePostApi,
   createPostApi,
   deletePostApi,
+  getSinglePostApi,
+  deleteCommentApi,
+  addCommentApi,
 } from "../ApiCalls/postApi";
 import {
   GET_ALL_POST,
@@ -22,6 +25,15 @@ import {
   DELETE_POST,
   DELETE_POST_SUCCESS,
   DELETE_POST_ERROR,
+  GET_SINGLE_POST,
+  GET_SINGLE_POST_SUCCESS,
+  GET_SINGLE_POST_ERROR,
+  ADD_COMMENT,
+  ADD_COMMENT_SUCCESS,
+  ADD_COMMENT_ERROR,
+  DELETE_COMMENT,
+  DELETE_COMMENT_SUCCESS,
+  DELETE_COMMENT_ERROR,
 } from "./types";
 
 export const postActionCreator = {
@@ -54,4 +66,22 @@ export const postActionCreator = {
   }),
   deletePostSuccess: createAction(DELETE_POST_SUCCESS),
   deletePostError: createAction(DELETE_POST_ERROR),
+
+  getSinglePost: createAction(GET_SINGLE_POST, async (payload) => {
+    await getSinglePostApi(payload);
+  }),
+  getSinglePostSuccess: createAction(GET_SINGLE_POST_SUCCESS),
+  getSinglePostError: createAction(GET_SINGLE_POST_ERROR),
+
+  addComment: createAction(ADD_COMMENT, async (payload) => {
+    await addCommentApi(payload);
+  }),
+  addCommentSuccess: createAction(ADD_COMMENT_SUCCESS),
+  addCommentError: createAction(ADD_COMMENT_ERROR),
+
+  deleteComment: createAction(DELETE_COMMENT, async (payload) => {
+    await deleteCommentApi(payload);
+  }),
+  deleteCommentSuccess: createAction(DELETE_COMMENT_SUCCESS),
+  deleteCommentError: createAction(DELETE_COMMENT_ERROR),
 };

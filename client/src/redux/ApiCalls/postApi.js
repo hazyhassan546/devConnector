@@ -15,6 +15,15 @@ export const getAllPostApi = async () => {
   }
 };
 
+export const getSinglePostApi = async (params) => {
+  try {
+    const res = await ApiPost(ENDPOINTS.getPostById, params);
+    store.dispatch(postActionCreator.getSinglePostSuccess(res.data));
+  } catch (error) {
+    store.dispatch(postActionCreator.getSinglePostError());
+  }
+};
+
 export const likePostAPi = async (params) => {
   try {
     const res = await ApiPost(ENDPOINTS.likePost, params);
@@ -76,5 +85,23 @@ export const deletePostApi = async (params) => {
     });
   } catch (error) {
     store.dispatch(postActionCreator.deletePostError());
+  }
+};
+
+export const addCommentApi = async (params) => {
+  try {
+    const res = await ApiPost(ENDPOINTS.addPostComment, params);
+    store.dispatch(postActionCreator.addCommentSuccess(res.data));
+  } catch (error) {
+    store.dispatch(postActionCreator.addCommentError());
+  }
+};
+
+export const deleteCommentApi = async (params) => {
+  try {
+    const res = await ApiPost(ENDPOINTS.deletePostComment, params);
+    store.dispatch(postActionCreator.deleteCommentSuccess(res.data));
+  } catch (error) {
+    store.dispatch(postActionCreator.deleteCommentError());
   }
 };
