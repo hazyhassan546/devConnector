@@ -7,7 +7,6 @@ const User = require("../../models/User");
 const Post = require("../../models/Post");
 const request = require("request");
 const config = require("config");
-
 // ------------------------------------- Get My Profiles API ---------------------------
 // @route   Get api/profile/me
 // @desc    Test route
@@ -394,7 +393,6 @@ router.post(
       };
 
       await request(options, (error, response, body) => {
-        
         if (error) {
           return console.error(error);
         }
@@ -413,5 +411,4 @@ router.post(
     }
   }
 );
-
 module.exports = router;

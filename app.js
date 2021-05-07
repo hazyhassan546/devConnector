@@ -2,11 +2,16 @@ const express = require("express");
 const connectDb = require("./config/db");
 const path = require("path");
 const app = express();
+var cors = require("cors");
 connectDb();
 
 /// Init Middleware
+app.use(cors());
 app.use(express.json({ extended: false }));
+app.use(express.static("public"));
+app.use("/images", express.static("images"));
 /// APP Routes || Defining Routes
+
 app.use("/api/users", require("./routes/api/users"));
 app.use("/api/post", require("./routes/api/posts"));
 app.use("/api/auth", require("./routes/api/auth"));

@@ -9,6 +9,7 @@ import {
   getAllProfilesApi,
   getGithubRepoApi,
   getUserProfileByIDApi,
+  uploadingImageApi,
 } from "../ApiCalls/profileApi";
 import {
   ADD_EDUCATION,
@@ -39,6 +40,9 @@ import {
   GET_GITHUB_REPO,
   GET_GITHUB_REPO_SUCCESS,
   GET_GITHUB_REPO_ERROR,
+  PROFILE_IMAGE,
+  PROFILE_IMAGE_SUCCESS,
+  PROFILE_IMAGE_ERROR,
 } from "./types";
 
 export const profileActionCreator = {
@@ -105,4 +109,10 @@ export const profileActionCreator = {
   }),
   getGithubRepoSuccess: createAction(GET_GITHUB_REPO_SUCCESS),
   getGithubRepoError: createAction(GET_GITHUB_REPO_ERROR),
+
+  uploadProfileImage: createAction(PROFILE_IMAGE, async (payload) => {
+    await uploadingImageApi(payload);
+  }),
+  uploadProfileImageSuccess: createAction(PROFILE_IMAGE_SUCCESS),
+  uploadProfileImageError: createAction(PROFILE_IMAGE_ERROR),
 };

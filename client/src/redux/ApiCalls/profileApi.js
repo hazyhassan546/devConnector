@@ -1,7 +1,7 @@
 import axios from "axios";
 import { ENDPOINTS } from "../../common/routes";
 import { AlertHelper } from "../../helpers/alertHelper";
-import { ApiGet, ApiPost, ApiPut } from "../../helpers/apiHelper";
+import { ApiGet, ApiImagePost, ApiPost, ApiPut } from "../../helpers/apiHelper";
 import { profileActionCreator } from "../action/profile";
 import store from "../store";
 
@@ -158,5 +158,18 @@ export const getUserProfileByIDApi = async (params) => {
     store.dispatch(profileActionCreator.getUserProfileByIdSuccess(res.data));
   } catch (error) {
     store.dispatch(profileActionCreator.getUserProfileByIdError());
+  }
+};
+
+export const uploadingImageApi = async (params) => {
+  try {
+    const res = await ApiImagePost(ENDPOINTS.profileImage, params);
+    store.dispatch(profileActionCreator.uploadProfileImageSuccess(res.data));
+    AlertHelper({
+      msg: "Image Updated Successfully",
+      alertType: "success",
+    });
+  } catch (error) {
+    store.dispatch(profileActionCreator.uploadProfileImageError());
   }
 };

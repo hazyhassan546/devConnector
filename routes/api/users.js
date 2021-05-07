@@ -6,6 +6,8 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const config = require("config");
 const { body, validationResult } = require("express-validator");
+var multer = require("multer");
+const auth = require("../../midleware/auth");
 
 // @route   Post api/users
 // @desc    Register user
@@ -80,5 +82,41 @@ router.post(
     }
   }
 );
+
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "public");
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + "-" + file.originalname);
+  },
+});
+
+var upload = multer({ storage: storage }).single("file");
+router.post("/profileImage", auth, async (req, res) => {
+  const UserId = req.user.id;
+  upload(req, res, async (err) => {
+    if (err instanceof multer.MulterError) {
+      return res.status(500).json(err);
+    } else if (err) {
+      return res.status(500).json(err);
+    }
+    try {
+      let user = await User.findOne({ user: UserId });
+      if (user) {
+        //user.avatar=
+        return res.status(200).send(req.file);
+      } else {
+        return res.status(400).send("User Not Found");
+      }
+    } catch (error) {
+      return res.status(500).json({
+        errors: {
+          msg: "Internal server error",
+        },
+      });
+    }
+  });
+});
 
 module.exports = router;

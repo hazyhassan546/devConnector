@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import { globalConnect } from "../../redux/connect/globalConnect";
 import Spinner from "../../components/layouts/spinner";
 import { Link, useHistory } from "react-router-dom";
+import axios from "axios";
+import { ENDPOINTS } from "../../common/routes";
 function EditProfile(props) {
   let history = useHistory();
   let loading = props?.profile?.loading;
@@ -52,9 +54,15 @@ function EditProfile(props) {
     });
   }, [loading]);
 
+  const selectImage = (e) => {
+    console.log(e.target.files[0]);
+    const formData = new FormData();
+    formData.append("file", e.target.files[0]);
+    props.uploadProfileImage(formData);
+  };
   const submitForm = (e) => {
     e.preventDefault();
-    props.createOrUpdateProfile({ formData, history,edit:true }, );
+    props.createOrUpdateProfile({ formData, history, edit: true });
   };
   const {
     company,
@@ -84,6 +92,14 @@ function EditProfile(props) {
           profile stand out
         </p> */}
         {/* <small>* = required field</small> */}
+        <label for="favcolor">Change Profile Image : </label>
+        <input
+          type="file"
+          class="btn btn-primary my-1"
+          onChange={(e) => {
+            selectImage(e);
+          }}
+        />
         <form
           class="form"
           onSubmit={(e) => {

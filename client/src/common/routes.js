@@ -1,6 +1,7 @@
 export const ENDPOINTS = {
   register: "/api/users",
   login: "/api/auth/login",
+  profileImage: "/api/users/profileImage",
   /////
   profile: "/api/profile/me",
   profileById: "/api/profile/byID",
