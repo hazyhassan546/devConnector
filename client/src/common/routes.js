@@ -1,4 +1,5 @@
-export const SERVER_URL = "https://secret-river-29715.herokuapp.com/";
+export const SERVER_URL =
+  "https://dashboard.heroku.com/apps/thawing-garden-30802/";
 export const LOCAL_SERVER = "http://localhost:3000/";
 export const ENDPOINTS = {
   register: "/api/users",
