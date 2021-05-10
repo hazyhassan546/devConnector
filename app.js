@@ -8,8 +8,9 @@ connectDb();
 /// Init Middleware
 app.use(cors());
 app.use(express.json({ extended: false }));
-app.use(express.static("public"));
-app.use("/images", express.static("images"));
+app.use(express.static(__dirname + '/public/profileImages'));
+// app.use(express.static("public/profileImages"));
+// app.use("/images", express.static("images"));
 /// APP Routes || Defining Routes
 
 app.use("/api/users", require("./routes/api/users"));

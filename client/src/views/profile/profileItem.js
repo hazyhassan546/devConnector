@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { SERVER_URL } from "../../common/routes";
 
 function ProfileItem({
   profile: {
@@ -13,7 +14,7 @@ function ProfileItem({
 }) {
   return (
     <div className={"profile bg-light"}>
-      <img src={avatar} alt="" className={"round-image"} />
+      <img src={SERVER_URL + avatar} alt="" className={"round-image"} />
       <div>
         <h2>{name}</h2>
         <p>

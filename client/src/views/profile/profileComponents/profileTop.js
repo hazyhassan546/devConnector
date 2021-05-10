@@ -1,10 +1,15 @@
 import React from "react";
+import { SERVER_URL } from "../../../common/routes";
 
 const ProfileTop = (props) => {
   const profile = props.profile.profile;
   return (
     <div class="profile-top bg-primary p-2">
-      <img class="round-img my-1" src={profile?.user?.avatar} alt="" />
+      <img
+        class="round-img my-1"
+        src={SERVER_URL + profile?.user?.avatar}
+        alt=""
+      />
       <h1 class="large">{profile?.user?.name}</h1>
       <p class="lead">
         {profile?.status} {profile?.company && "at " + profile?.company}

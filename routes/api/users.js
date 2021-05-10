@@ -102,9 +102,19 @@ router.post("/profileImage", auth, async (req, res) => {
       return res.status(500).json(err);
     }
     try {
-      let user = await User.findOne({ user: UserId });
+      let user = await User.findOne({ _id: UserId });
+      let ImagePath = req.file.filename;
       if (user) {
-        //user.avatar=
+        user = await User.findOneAndUpdate(
+          { _id: req.user.id },
+          {
+            $set: { avatar: ImagePath },
+          },
+          {
+            new: true,
+          }
+        );
+
         return res.status(200).send(req.file);
       } else {
         return res.status(400).send("User Not Found");
