@@ -3,11 +3,16 @@ import { SERVER_URL } from "../../../common/routes";
 
 const ProfileTop = (props) => {
   const profile = props.profile.profile;
+  const image = profile?.user?.avatar;
   return (
     <div class="profile-top bg-primary p-2">
       <img
         class="round-img my-1"
-        src={SERVER_URL + profile?.user?.avatar}
+        src={
+          profile?.user?.avatar?.search("gravatar") == -1
+            ? SERVER_URL + profile?.user?.avatar
+            : profile?.user?.avatar
+        }
         alt=""
       />
       <h1 class="large">{profile?.user?.name}</h1>

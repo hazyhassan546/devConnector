@@ -14,7 +14,7 @@ function ProfileItem({
 }) {
   return (
     <div className={"profile bg-light"}>
-      <img src={SERVER_URL + avatar} alt="" className={"round-image"} />
+      <img src={avatar} alt="" className={"round-image"} />
       <div>
         <h2>{name}</h2>
         <p>
