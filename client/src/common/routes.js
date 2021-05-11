@@ -1,5 +1,5 @@
 export const SERVER_URL =
-  "http://localhost:3000/";
+  "https://arcane-atoll-53645.herokuapp.com/";
 export const LOCAL_SERVER = "http://localhost:3000/";
 export const ENDPOINTS = {
   register: "/api/users",
