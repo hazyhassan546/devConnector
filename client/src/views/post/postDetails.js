@@ -4,6 +4,7 @@ import { globalConnect } from "../../redux/connect/globalConnect";
 import Moment from "react-moment";
 import { Link } from "react-router-dom";
 import Spinner from "../../components/layouts/spinner";
+import { SERVER_URL } from "../../common/routes";
 
 const PostDetails = (props) => {
   const [formData, setFormData] = useState({
@@ -80,7 +81,11 @@ const PostDetails = (props) => {
                     <div class="post bg-white p-1 my-1">
                       <div>
                         <a href="profile.html">
-                          <img class="round-img" src={item?.avatar} alt="" />
+                          <img
+                            class="round-img"
+                            src={SERVER_URL + item?.avatar}
+                            alt=""
+                          />
                           <h4>{item?.name}</h4>
                         </a>
                       </div>
